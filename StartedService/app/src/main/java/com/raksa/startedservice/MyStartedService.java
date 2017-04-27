@@ -2,6 +2,7 @@ package com.raksa.startedservice;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
@@ -25,7 +26,14 @@ public class MyStartedService extends Service {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.i(TAG,"onStartCommand , Thread Name : "+Thread.currentThread().getName());
-        return super.onStartCommand(intent, flags, startId);
+        return START_STICKY;
+        //START_STICKY : Restart The Service if its was destroy by memory over usage but with no intent(NULL).
+        //START_REDELIVER_INTENT : Restart The Service and with always restart the delivered Intent.
+        //START_NOT_STICKY : No Restart and No Intent
+
+
+
+
     }
 
     @Nullable
@@ -41,4 +49,27 @@ public class MyStartedService extends Service {
         super.onDestroy();
     }
 
+}
+
+class MyAsyncTask extends AsyncTask {
+
+    @Override
+    protected void onPreExecute() {
+        super.onPreExecute();
+    }
+
+    @Override
+    protected Object doInBackground(Object[] params) {
+        return null;
+    }
+
+    @Override
+    protected void onProgressUpdate(Object[] values) {
+        super.onProgressUpdate(values);
+    }
+
+    @Override
+    protected void onPostExecute(Object o) {
+        super.onPostExecute(o);
+    }
 }
